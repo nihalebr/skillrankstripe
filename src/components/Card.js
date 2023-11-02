@@ -19,7 +19,7 @@ function Card() {
     useEffect(() => {
       return () => {
         clearTimeout();
-      };
+    };
     }, []);
   
 
