@@ -45,24 +45,12 @@ function Card() {
         </div>
       </div>
 
-      <label class="relative inline-flex items-center cursor-pointer">
-        <input type="checkbox" value="" class="sr-only peer" checked />
-        <div class="w-20 h-10 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-8 after:w-8 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
-          <span class="absolute text-sm font-medium text-gray-900 dark:text-gray-300 left-1/2 -translate-x-1/2 top-1/2 transform -translate-y-1/2">
-            On
-          </span>
-          <span class="absolute text-sm font-medium text-gray-900 dark:text-gray-300 left-10 top-1/2 transform -translate-y-1/2">
-            Off
-          </span>
-        </div>
-      </label>
-
       {isMonthly ? (
         <div className="mt-4 text-lg text-primary">
           {/* Monthly content */}
 
           <div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
-            <div class="hidden md:block p-4">
+            <div class=" p-4">
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
@@ -154,7 +142,7 @@ function Card() {
                 </div>
               </div>
             </div>
-            <div class="hidden md:block p-4">
+            <div class=" p-4">
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
@@ -279,8 +267,11 @@ function Card() {
           )}
         </div>
       ) : (
-        <div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
-            <div class="hidden md:block p-4">
+        <div className="mt-4 text-lg text-primary">
+          {/* Monthly content */}
+
+          <div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
+            <div class=" p-4">
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
@@ -302,7 +293,7 @@ function Card() {
                       </div>
                       <div className="flex flex-col ml-2 text-gray-400 font-semibold">
                         <span>per</span>
-                        <span className="-mt-2 ">month</span>
+                        <span className="-mt-2 ">year</span>
                       </div>
                     </div>
                     <button
@@ -372,7 +363,7 @@ function Card() {
                 </div>
               </div>
             </div>
-            <div class="hidden md:block p-4">
+            <div class=" p-4">
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
@@ -394,7 +385,7 @@ function Card() {
                       </div>
                       <div className="flex flex-col ml-2 text-gray-400 font-semibold">
                         <span>per</span>
-                        <span className="-mt-2 ">month</span>
+                        <span className="-mt-2 ">year</span>
                       </div>
                     </div>
                     <button
@@ -465,7 +456,37 @@ function Card() {
               </div>
             </div>
           </div>
-     
+
+          {showModal && (
+            <div className="fixed inset-0 flex items-center justify-center z-50 ">
+              <div className="modal  rounded-lg p-4 bg-blue-700">
+                <div className="text-2xl font-bold mb-4 text-center text-white">
+                  Payment Successful
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-12 h-12 mx-auto text-white"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <button
+                  onClick={handleCloseModal}
+                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4 mx-auto block"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
