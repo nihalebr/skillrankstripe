@@ -272,7 +272,7 @@ function Card() {
 
           <div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
             <div class=" p-4">
-              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
+              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
                     <button className=" mt-1 text-1xl font-bold text-red-700 bg-yellow-300 px-2 py-1">
@@ -364,7 +364,7 @@ function Card() {
               </div>
             </div>
             <div class=" p-4">
-              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
+              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
                     <button className=" mt-1 text-1xl font-bold text-red-700 bg-yellow-300 px-2 py-1">
