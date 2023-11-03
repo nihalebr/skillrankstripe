@@ -54,9 +54,8 @@ function Card() {
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    <button className=" mt-1 text-1xl font-bold text-red-700 bg-yellow-300 px-2 py-1">
-                      TEST MODE
-                    </button>
+                    
+                    
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -146,9 +145,7 @@ function Card() {
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    <button className=" mt-1 text-1xl font-bold text-red-700 bg-yellow-300 px-2 py-1">
-                      TEST MODE
-                    </button>
+                   
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -275,9 +272,7 @@ function Card() {
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    <button className=" mt-1 text-1xl font-bold text-red-700 bg-yellow-300 px-2 py-1">
-                      TEST MODE
-                    </button>
+                    
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -367,9 +362,8 @@ function Card() {
               <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    <button className=" mt-1 text-1xl font-bold text-red-700 bg-yellow-300 px-2 py-1">
-                      TEST MODE
-                    </button>
+                    
+                    
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
