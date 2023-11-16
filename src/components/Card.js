@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Card() {
-  const [showModal, setShowModal] = useState(false);
   const [isMonthly, setIsMonthly] = useState(true);
 
   const submitStarter = () => {
@@ -29,8 +28,8 @@ function Card() {
     // write a http request to make api request with priceID
     // then redirect to checkout page
     const priceId = isMonthly
-      ? "price_1O8JkZSEFUwbQhR83DgDlMXL"
-      : "price_1O8JkZSEFUwbQhR8qibOMCpQ";
+      ? "price_1O8JkZSEFUwbQhR8qibOMCpQ"
+      : "price_1O8JkZSEFUwbQhR83DgDlMXL";
     console.log(`isMonthly ${isMonthly}`);
     console.log(priceId);
     const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/pay`;
@@ -43,10 +42,6 @@ function Card() {
         console.log(res);
         window.location.href = res.data.headers.Location;
       });
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
   };
 
   useEffect(() => {
@@ -195,7 +190,7 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={submitStarter}
+                      onClick={submitPro}
                     >
                       Subscribe
                     </button>
@@ -260,36 +255,6 @@ function Card() {
               </div>
             </div>
           </div>
-
-          {showModal && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 ">
-              <div className="modal  rounded-lg p-4 bg-blue-700">
-                <div className="text-2xl font-bold mb-4 text-center text-white">
-                  Payment Successful
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="w-12 h-12 mx-auto text-white"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <button
-                  onClick={handleCloseModal}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4 mx-auto block"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       ) : (
         <div className="mt-4 text-lg text-primary">
@@ -321,7 +286,7 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={submitPro}
+                      onClick={submitStarter}
                     >
                       Subscribe
                     </button>
@@ -473,36 +438,6 @@ function Card() {
               </div>
             </div>
           </div>
-
-          {showModal && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 ">
-              <div className="modal  rounded-lg p-4 bg-blue-700">
-                <div className="text-2xl font-bold mb-4 text-center text-white">
-                  Payment Successful
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="w-12 h-12 mx-auto text-white"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <button
-                  onClick={handleCloseModal}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4 mx-auto block"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       )}
     </div>
