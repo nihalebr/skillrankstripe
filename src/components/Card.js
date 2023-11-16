@@ -28,17 +28,17 @@ function Card() {
         <div className="border py-1 px-3  mt-3 rounded-md">
           <button
             className={`${
-              !isMonthly ? "bg-primary text-white" : " bg-blue-500 text-white"
+              !isMonthly ? "bg-primary text-black" : " bg-blue-500 text-white"
             } py-3 px-4 rounded-md`}
-            onClick={() => setIsMonthly(false)}
+            onClick={() => setIsMonthly(true)}
           >
             Monthly
           </button>
           <button
             className={`${
-              isMonthly ? "bg-primary text-white" : "bg-gray-300 text-gray-700"
+              isMonthly ? "bg-primary text-black" : "bg-blue-500 text-white"
             } py-3 px-4 rounded-md`}
-            onClick={() => setIsMonthly(true)}
+            onClick={() => setIsMonthly(false)}
           >
             Yearly
           </button>
@@ -56,7 +56,7 @@ function Card() {
                   <div className=" ">
                     
                     
-                    <h1 className="text-6xl font-bold mt-4">
+                    <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
                     <p className="font-bold  mt-4 text-2xl ">
@@ -146,7 +146,7 @@ function Card() {
                 <div className="w-full p-8 ">
                   <div className=" ">
                    
-                    <h1 className="text-6xl font-bold mt-4">
+                    <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
                     <p className="font-bold  mt-4 text-2xl ">
@@ -273,7 +273,7 @@ function Card() {
                 <div className="w-full p-8 ">
                   <div className=" ">
                     
-                    <h1 className="text-6xl font-bold mt-4">
+                    <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
                     <p className="font-bold  mt-4 text-2xl ">
@@ -364,7 +364,7 @@ function Card() {
                   <div className=" ">
                     
                     
-                    <h1 className="text-6xl font-bold mt-4">
+                    <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
                     <p className="font-bold  mt-4 text-2xl ">
