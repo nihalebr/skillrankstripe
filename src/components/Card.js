@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import {  useNavigate } from 'react-router-dom';
 function Card() {
-  const [showModal, setShowModal] = useState(false);
   const [isMonthly, setIsMonthly] = useState(true);
 
-  const handleModalClick = () => {
-    setShowModal(true);
+  const navigate = useNavigate();
 
-    setTimeout(() => {
-      handleCloseModal();
-    }, 1000);
+
+  const handleButtonClick = () => {
+    // Redirect to the Success page
+    navigate('/success');
+    
   };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  useEffect(() => {
-    return () => {
-      clearTimeout();
-    };
-  }, []);
 
   return (
     <div className="cardDiv md:mt-20 center mb-5 mx-4">
@@ -77,7 +67,7 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={handleButtonClick}
                     >
                       Subscribe
                     </button>
@@ -167,7 +157,7 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={handleButtonClick}
                     >
                       Subscribe
                     </button>
@@ -233,35 +223,7 @@ function Card() {
             </div>
           </div>
 
-          {showModal && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 ">
-              <div className="modal  rounded-lg p-4 bg-blue-700">
-                <div className="text-2xl font-bold mb-4 text-center text-white">
-                  Payment Successful
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="w-12 h-12 mx-auto text-white"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <button
-                  onClick={handleCloseModal}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4 mx-auto block"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
+         
         </div>
       ) : (
         <div className="mt-4 text-lg text-primary">
@@ -294,7 +256,7 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={handleButtonClick}
                     >
                       Subscribe
                     </button>
@@ -385,7 +347,7 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={handleButtonClick}
                     >
                       Subscribe
                     </button>
@@ -451,35 +413,7 @@ function Card() {
             </div>
           </div>
 
-          {showModal && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 ">
-              <div className="modal  rounded-lg p-4 bg-blue-700">
-                <div className="text-2xl font-bold mb-4 text-center text-white">
-                  Payment Successful
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="w-12 h-12 mx-auto text-white"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <button
-                  onClick={handleCloseModal}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4 mx-auto block"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
+        
         </div>
       )}
     </div>
