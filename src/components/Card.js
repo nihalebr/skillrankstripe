@@ -1,15 +1,48 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Card() {
   const [showModal, setShowModal] = useState(false);
   const [isMonthly, setIsMonthly] = useState(true);
 
-  const handleModalClick = () => {
-    setShowModal(true);
+  const submitStarter = () => {
+    // write a http request to make api request with priceID
+    // then redirect to checkout page
+    const priceId = isMonthly
+      ? "price_1O4JcBSEFUwbQhR8HWocMuPM"
+      : "price_1O4i1HSEFUwbQhR83ykgAIHE";
+    console.log(`isMonthly ${isMonthly}`);
+    console.log(priceId);
+    const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/pay`;
+    axios
+      .post(url, {
+        priceId: priceId,
+        customerEmail: "customer@example.com",
+      })
+      .then((res) => {
+        console.log(res);
+        window.location.href = res.data.headers.Location;
+      });
+  };
 
-    setTimeout(() => {
-      handleCloseModal();
-    }, 1000);
+  const submitPro = () => {
+    // write a http request to make api request with priceID
+    // then redirect to checkout page
+    const priceId = isMonthly
+      ? "price_1O8JkZSEFUwbQhR83DgDlMXL"
+      : "price_1O8JkZSEFUwbQhR8qibOMCpQ";
+    console.log(`isMonthly ${isMonthly}`);
+    console.log(priceId);
+    const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/pay`;
+    axios
+      .post(url, {
+        priceId: priceId,
+        customerEmail: "customer@example.com",
+      })
+      .then((res) => {
+        console.log(res);
+        window.location.href = res.data.headers.Location;
+      });
   };
 
   const handleCloseModal = () => {
@@ -49,13 +82,11 @@ function Card() {
         <div className="mt-4 text-lg text-primary">
           {/* Monthly content */}
 
-          <div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
-            <div class=" p-4">
-              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
+            <div className=" p-4">
+              <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    
-                    
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -77,16 +108,16 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={submitStarter}
                     >
                       Subscribe
                     </button>
                   </div>
                 </div>
 
-                <div class="px-6 py-4">
+                <div className="px-6 py-4">
                   <span className="text-gray-400">This includes:</span>
-                  <p class="text-gray-700 text-base grid mt-3"></p>
+                  <p className="text-gray-700 text-base grid mt-3"></p>
                   <span className="flex ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -141,23 +172,20 @@ function Card() {
                 </div>
               </div>
             </div>
-            <div class=" p-4">
-              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
+            <div className=" p-4">
+              <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                   
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
-                    <p className="font-bold  mt-4 text-2xl ">
-                      Skillrank Starter
-                    </p>
+                    <p className="font-bold  mt-4 text-2xl ">Skillrank Pro</p>
                     <p className="font-bold  mt-4 text-gray-400 ">
-                      Skillrank Starter subscription
+                      Skillrank Pro subscription
                     </p>
                     <div className="flex mt-6">
                       <div>
-                        <span className="text-4xl font-bold">₹500</span>
+                        <span className="text-4xl font-bold">₹700</span>
                       </div>
                       <div className="flex flex-col ml-2 text-gray-400 font-semibold">
                         <span>per</span>
@@ -167,16 +195,16 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={submitStarter}
                     >
                       Subscribe
                     </button>
                   </div>
                 </div>
 
-                <div class="px-6 py-4">
+                <div className="px-6 py-4">
                   <span className="text-gray-400">This includes:</span>
-                  <p class="text-gray-700 text-base grid mt-3"></p>
+                  <p className="text-gray-700 text-base grid mt-3"></p>
                   <span className="flex ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -267,12 +295,11 @@ function Card() {
         <div className="mt-4 text-lg text-primary">
           {/* Monthly content */}
 
-          <div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
-            <div class=" p-4">
-              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
+            <div className=" p-4">
+              <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -284,7 +311,7 @@ function Card() {
                     </p>
                     <div className="flex mt-6">
                       <div>
-                        <span className="text-4xl font-bold">₹500</span>
+                        <span className="text-4xl font-bold">₹5000</span>
                       </div>
                       <div className="flex flex-col ml-2 text-gray-400 font-semibold">
                         <span>per</span>
@@ -294,16 +321,16 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={submitPro}
                     >
                       Subscribe
                     </button>
                   </div>
                 </div>
 
-                <div class="px-6 py-4">
+                <div className="px-6 py-4">
                   <span className="text-gray-400">This includes:</span>
-                  <p class="text-gray-700 text-base grid mt-3"></p>
+                  <p className="text-gray-700 text-base grid mt-3"></p>
                   <span className="flex ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -358,24 +385,20 @@ function Card() {
                 </div>
               </div>
             </div>
-            <div class=" p-4">
-              <div class="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
+            <div className=" p-4">
+              <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    
-                    
                     <h1 className="text-6xl font-bold mt-4">
                       S<span className="text-blue-600">R </span>
                     </h1>
-                    <p className="font-bold  mt-4 text-2xl ">
-                      Skillrank Starter
-                    </p>
+                    <p className="font-bold  mt-4 text-2xl ">Skillrank Pro</p>
                     <p className="font-bold  mt-4 text-gray-400 ">
-                      Skillrank Starter subscription
+                      Skillrank Pro subscription
                     </p>
                     <div className="flex mt-6">
                       <div>
-                        <span className="text-4xl font-bold">₹500</span>
+                        <span className="text-4xl font-bold">₹7000</span>
                       </div>
                       <div className="flex flex-col ml-2 text-gray-400 font-semibold">
                         <span>per</span>
@@ -385,16 +408,16 @@ function Card() {
                     <button
                       type="button "
                       className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
-                      onClick={handleModalClick}
+                      onClick={submitPro}
                     >
                       Subscribe
                     </button>
                   </div>
                 </div>
 
-                <div class="px-6 py-4">
+                <div className="px-6 py-4">
                   <span className="text-gray-400">This includes:</span>
-                  <p class="text-gray-700 text-base grid mt-3"></p>
+                  <p className="text-gray-700 text-base grid mt-3"></p>
                   <span className="flex ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
