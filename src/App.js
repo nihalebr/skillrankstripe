@@ -7,12 +7,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" component={App} />
-        <Route path="/success" component={Success} />
+        <Route path="/" element={<Nav />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
       <div className="app">
-        <Nav />
-        <Card />
+        <Routes>
+          <Route path="/" element={<Card />} />
+        </Routes>
       </div>
     </Router>
   );
