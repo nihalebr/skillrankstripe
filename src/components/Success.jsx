@@ -1,6 +1,14 @@
 // Success.js
 import React from "react";
+import Countdown, { zeroPad } from "react-countdown";
 
+const renderer = ({ hours, minutes, seconds, completed }) => {
+  if (!completed) {
+    return <span className="text-indigo-500">{zeroPad(seconds)}s</span>;
+  } else {
+    window.location.href = "/";
+  }
+};
 const Success = () => {
   return (
     <div className="grid h-screen place-items-center">
@@ -49,7 +57,9 @@ const Success = () => {
             You will be redirected to dashboard in a few seconds.
           </p>
           <p className="text-center">
-            If you are not redirected in a few seconds, please click{" "}
+            If you are not redirected in a{" "}
+            <Countdown date={Date.now() + 8000} renderer={renderer} />, please
+            click{" "}
             <a className="text-indigo-500" href="/">
               here
             </a>
