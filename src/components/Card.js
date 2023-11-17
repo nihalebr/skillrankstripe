@@ -3,10 +3,15 @@ import axios from "axios";
 
 function Card() {
   const [isMonthly, setIsMonthly] = useState(true);
+  const [isButtonEnable, setButtonEnable] = useState(true);
+  const [buttonTextStarter, setButtonTextStarter] = useState("Subscribe");
+  const [buttonTextPro, setButtonTextPro] = useState("Subscribe");
 
   const submitStarter = () => {
     // write a http request to make api request with priceID
     // then redirect to checkout page
+    setButtonEnable(false);
+    setButtonTextStarter("Processing..");
     const priceId = isMonthly
       ? "price_1O4JcBSEFUwbQhR8HWocMuPM"
       : "price_1O4i1HSEFUwbQhR83ykgAIHE";
@@ -27,6 +32,8 @@ function Card() {
   const submitPro = () => {
     // write a http request to make api request with priceID
     // then redirect to checkout page
+    setButtonEnable(false);
+    setButtonTextPro("Processing..");
     const priceId = isMonthly
       ? "price_1O8JkZSEFUwbQhR8qibOMCpQ"
       : "price_1O8JkZSEFUwbQhR83DgDlMXL";
@@ -82,8 +89,6 @@ function Card() {
               <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    
-                    
                     <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -104,10 +109,11 @@ function Card() {
                     </div>
                     <button
                       type="button "
-                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
+                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5 disabled:bg-slate-400"
                       onClick={submitStarter}
+                      disabled={isButtonEnable}
                     >
-                      Subscribe
+                      {buttonTextStarter}
                     </button>
                   </div>
                 </div>
@@ -173,7 +179,6 @@ function Card() {
               <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                   
                     <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -192,10 +197,11 @@ function Card() {
                     </div>
                     <button
                       type="button "
-                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
+                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5 disabled:bg-slate-400"
                       onClick={submitPro}
+                      disabled={isButtonEnable}
                     >
-                      Subscribe
+                      {buttonTextPro}
                     </button>
                   </div>
                 </div>
@@ -218,7 +224,7 @@ function Card() {
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="ml-2">3 test/per user</p>
+                    <p className="ml-2">5 test/per user</p>
                   </span>
                   <span className="flex mt-1">
                     <svg
@@ -235,7 +241,7 @@ function Card() {
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="ml-2">3 HR account</p>
+                    <p className="ml-2">5 HR account</p>
                   </span>
                   <span className="flex mt-1">
                     <svg
@@ -252,7 +258,7 @@ function Card() {
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="ml-2"> Log 15days</p>
+                    <p className="ml-2"> Log 30days</p>
                   </span>
                 </div>
               </div>
@@ -268,7 +274,6 @@ function Card() {
               <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    
                     <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -289,10 +294,11 @@ function Card() {
                     </div>
                     <button
                       type="button "
-                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
+                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5 disabled:bg-slate-400"
                       onClick={submitStarter}
+                      disabled={isButtonEnable}
                     >
-                      Subscribe
+                      {buttonTextStarter}
                     </button>
                   </div>
                 </div>
@@ -358,8 +364,6 @@ function Card() {
               <div className="max-w-sm rounded border border-blue-500 overflow-hidden shadow-lg mx-auto bg-gray-100">
                 <div className="w-full p-8 ">
                   <div className=" ">
-                    
-                    
                     <h1 className="text-6xl font-bold">
                       S<span className="text-blue-600">R </span>
                     </h1>
@@ -378,10 +382,11 @@ function Card() {
                     </div>
                     <button
                       type="button "
-                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5"
+                      className="bg-blue-600 w-full px-4 py-2 rounded-md text-white font-semibold text-2xl mt-5 disabled:bg-slate-400"
                       onClick={submitPro}
+                      disabled={isButtonEnable}
                     >
-                      Subscribe
+                      {buttonTextPro}
                     </button>
                   </div>
                 </div>
@@ -404,7 +409,7 @@ function Card() {
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="ml-2">3 test/per user</p>
+                    <p className="ml-2">5 test/per user</p>
                   </span>
                   <span className="flex mt-1">
                     <svg
@@ -421,7 +426,7 @@ function Card() {
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="ml-2">3 HR account</p>
+                    <p className="ml-2">5 HR account</p>
                   </span>
                   <span className="flex mt-1">
                     <svg
@@ -438,7 +443,7 @@ function Card() {
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="ml-2"> Log 15days</p>
+                    <p className="ml-2"> Log 30days</p>
                   </span>
                 </div>
               </div>
