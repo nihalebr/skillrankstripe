@@ -1,20 +1,43 @@
-function Nav() {
+import { useCookies } from "react-cookie";
+import { LoginContext } from "../context/LoginContext";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
+const Nav = () => {
+  const [loginState, setLoginState] = useContext(LoginContext);
+  // eslint-disable-next-line
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (!loginState.isLoggedIn) {
+      navigate("/login");
+      return;
+    }
+    removeCookie("jwt", { sameSite: "none", secure: true });
+    removeCookie("subitem", { sameSite: "none", secure: true });
+    removeCookie("user", { sameSite: "none", secure: true });
+    setLoginState({
+      ...loginState,
+      isLoggedIn: false,
+    });
+    setTimeout(() => {
+      navigate("/login");
+    }, 100);
+  };
   return (
     <div>
       <nav className="bg-white fixed w-full z-20 top-0 left-0  ">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="https://www.skillrank.io/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="self-center text-3xl font-semibold whitespace-nowrap text-black">
               Skill<span className="text-blue-700">r</span>ank
             </span>
-          </a>
+          </Link>
           <div className="flex md:order-2">
-            <button
-              type="button"
-              className="text-white p-8 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Login
-            </button>
+            <Button color="blue" type="button" onClick={handleLogin}>
+              {loginState.isLoggedIn ? "Logout" : "Login"}
+            </Button>
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
@@ -47,6 +70,6 @@ function Nav() {
       </nav>
     </div>
   );
-}
+};
 
 export default Nav;
