@@ -21,8 +21,8 @@ const Subscription = () => {
     setButtonEnable(false);
     setButtonTextStarter("Processing..");
     const priceId = isMonthly
-      ? "price_1O4JcBSEFUwbQhR8HWocMuPM"
-      : "price_1O4JcBSEFUwbQhR8HWocMuPM";
+      ? "price_1OKhA4SEFUwbQhR8gR4QMdfJ"
+      : "price_1OKhAoSEFUwbQhR83ecnf91k";
     console.log(cookies);
     const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/pay`;
     const { data } = await axios.post(url, {
@@ -39,8 +39,8 @@ const Subscription = () => {
     setButtonEnable(false);
     setButtonTextPro("Processing..");
     const priceId = isMonthly
-      ? "price_1O4JcBSEFUwbQhR8HWocMuPM"
-      : "price_1O4JcBSEFUwbQhR8HWocMuPM";
+      ? "price_1OKhC7SEFUwbQhR8AbFWg0Pc"
+      : "price_1OKh0VSEFUwbQhR8Aka9SRhr";
     console.log(cookies);
     const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/pay`;
     const { data } = await axios.post(url, {
