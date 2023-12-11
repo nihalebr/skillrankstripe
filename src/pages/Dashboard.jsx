@@ -77,7 +77,12 @@ const Dashboard = () => {
                   </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
-                  <Button onClick={addUsage}>Create Assessment</Button>
+                  <Button
+                    onClick={addUsage}
+                    data-umami-event={cookies.subItemId + " Create Assessment"}
+                  >
+                    Create Assessment
+                  </Button>
                 </CardFooter>
               </Card>
               <Card className="mt-6 w-96">
@@ -100,7 +105,14 @@ const Dashboard = () => {
                   </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
-                  <Button onClick={managePay}>Manage Payment</Button>
+                  <Button
+                    onClick={managePay}
+                    data-umami-event={
+                      cookies.user.customerId + " Manage Payment"
+                    }
+                  >
+                    Manage Payment
+                  </Button>
                 </CardFooter>
               </Card>
             </div>

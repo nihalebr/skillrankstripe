@@ -120,6 +120,7 @@ const Login = () => {
             fullWidth
             disabled={isSigningIn}
             onClick={signIn}
+            data-umami-event="login-submit"
           >
             {isSigningIn ? "Logging in" : "Login"}
             {isSigningIn && <Spinner className="inline-block ml-2" />}
@@ -129,6 +130,7 @@ const Login = () => {
             <Link
               to="/signup"
               className="font-medium text-gray-900 hover:text-blue-700"
+              data-umami-event="login-signup-link"
             >
               register
             </Link>

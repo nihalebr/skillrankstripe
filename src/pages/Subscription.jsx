@@ -82,6 +82,7 @@ const Subscription = () => {
                     : " bg-blue-500 text-white"
                 } py-3 px-4 rounded-md`}
                 onClick={() => setIsMonthly(true)}
+                data-umami-event="Subscription-Monthly/Yearly-Switch"
               >
                 Monthly
               </button>
@@ -132,6 +133,7 @@ const Subscription = () => {
                           onClick={submitStarter}
                           disabled={!isButtonEnable}
                           fullWidth
+                          data-umami-event="Subscribe-Starter-Monthly"
                         >
                           {buttonTextStarter}
                         </Button>
@@ -225,10 +227,10 @@ const Subscription = () => {
                           S<span className="text-blue-600">R </span>
                         </h1>
                         <p className="font-bold  mt-4 text-2xl ">
-                          Skillrank Starter
+                          Skillrank Pro
                         </p>
                         <p className="font-bold  mt-4 text-gray-400 ">
-                          Skillrank Starter subscription
+                          Skillrank Pro subscription
                         </p>
                         <div className="flex mt-6">
                           <div>
@@ -248,6 +250,7 @@ const Subscription = () => {
                           onClick={submitPro}
                           disabled={!isButtonEnable}
                           fullWidth
+                          data-umami-event="Subscribe-Pro-Monthly"
                         >
                           {buttonTextPro}
                         </Button>
@@ -372,6 +375,7 @@ const Subscription = () => {
                           onClick={submitStarter}
                           disabled={!isButtonEnable}
                           fullWidth
+                          data-umami-event="Subscribe-Starter-Yearly"
                         >
                           {buttonTextStarter}
                         </Button>
@@ -465,10 +469,10 @@ const Subscription = () => {
                           S<span className="text-blue-600">R </span>
                         </h1>
                         <p className="font-bold  mt-4 text-2xl ">
-                          Skillrank Starter
+                          Skillrank Pro
                         </p>
                         <p className="font-bold  mt-4 text-gray-400 ">
-                          Skillrank Starter subscription
+                          Skillrank Pro subscription
                         </p>
                         <div className="flex mt-6">
                           <div>
@@ -488,6 +492,7 @@ const Subscription = () => {
                           disabled={!isButtonEnable}
                           color="blue"
                           fullWidth
+                          data-umami-event="Subscribe-Pro-Yearly"
                         >
                           {buttonTextPro}
                         </Button>

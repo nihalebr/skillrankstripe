@@ -1,9 +1,12 @@
 // Success.js
+import axios from "axios";
 import React, { useEffect } from "react";
 import Countdown, { zeroPad } from "react-countdown";
 import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Success = () => {
+  const [cookies, setCookie] = useCookies(["user"]);
   const navigate = useNavigate();
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (!completed) {
@@ -14,7 +17,24 @@ const Success = () => {
   };
   useEffect(() => {
     document.title = "SkillRankTest | Payment Success";
-  }, []);
+    async function refreshToken() {
+      const { data } = await axios.post(
+        "https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/refreshToken",
+        {
+          token: cookies.jwt,
+        }
+      );
+      setCookie("jwt", data.body.token, {
+        sameSite: "none",
+        secure: true,
+      });
+      setCookie("subitem", data.body.subitem, {
+        sameSite: "none",
+        secure: true,
+      });
+    }
+    refreshToken();
+  }, [cookies.jwt, setCookie]);
   return (
     <div className="grid h-screen place-items-center">
       <div className="flex items-center justify-center flex-col">
