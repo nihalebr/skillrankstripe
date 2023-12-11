@@ -55,10 +55,10 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className="flex justify-center items-center min-h-screen">
-          {cookies.subItem ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:flex">
-              <Card className="mt-6 w-96">
-                <CardHeader color="blue-gray" className="relative h-56">
+          {cookies.subitem ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-5 md:flex">
+              <Card className="mt-6 w-96 bg-gray-300">
+                <CardHeader color="blue-gray" className="relative h-44">
                   <img
                     className="object-cover"
                     src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2"
@@ -85,10 +85,10 @@ const Dashboard = () => {
                   </Button>
                 </CardFooter>
               </Card>
-              <Card className="mt-6 w-96">
-                <CardHeader color="blue-gray" className="relative h-56">
+              <Card className="mt-6 w-96 bg-gray-300">
+                <CardHeader color="blue-gray" className="relative h-44">
                   <img
-                    className="object-cover"
+                    className="w-full h-full object-cover object-center"
                     src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1"
                     alt="handing card"
                   />
