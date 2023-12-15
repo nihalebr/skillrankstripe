@@ -6,7 +6,7 @@ import { Button } from "@material-tailwind/react";
 const Nav = () => {
   const [loginState, setLoginState] = useContext(LoginContext);
   // eslint-disable-next-line
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [, , removeCookie] = useCookies(["user"]);
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -15,8 +15,9 @@ const Nav = () => {
       return;
     }
     removeCookie("jwt", { sameSite: "none", secure: true });
-    removeCookie("subitem", { sameSite: "none", secure: true });
+    removeCookie("subscription", { sameSite: "none", secure: true });
     removeCookie("user", { sameSite: "none", secure: true });
+    removeCookie("usage", { sameSite: "none", secure: true });
     setLoginState({
       ...loginState,
       isLoggedIn: false,
@@ -35,7 +36,11 @@ const Nav = () => {
             </span>
           </Link>
           <div className="flex md:order-2">
-            <Button color="blue" type="button" onClick={handleLogin}>
+            <Button
+              className="bg-blue-700 hover:bg-blue-800"
+              type="button"
+              onClick={handleLogin}
+            >
               {loginState.isLoggedIn ? "Logout" : "Login"}
             </Button>
             <button

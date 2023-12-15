@@ -19,7 +19,10 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [isSigningUp, setSigningUpState] = useState(false);
-  const [modelState, setModelState] = useState({ showModel: false });
+  const [modelState, setModelState] = useState({
+    showModel: false,
+    modelMessage: "",
+  });
   // eslint-disable-next-line
   const [cookies, setCookie] = useCookies(["user"]);
   const [loginState, setLoginState] = useContext(LoginContext);
@@ -29,9 +32,7 @@ const Signup = () => {
     setSigningUpState(true);
     if (!name || !pwd || !email) {
       setModelState({
-        name: !name ? "Name is required" : "",
-        email: !email ? "Email is required" : "",
-        password: !pwd ? "Password is required" : "",
+        modelMessage: "Please enter all the fields",
         showModel: true,
       });
       setSigningUpState(false);
@@ -45,13 +46,35 @@ const Signup = () => {
         customerEmail: email,
       }
     );
-    if (data.statusCode !== 200) {
+    if (data.statusCode === 409) {
       setSigningUpState(false);
+      setModelState({
+        modelMessage: "user already exists",
+        showModel: true,
+      });
       return;
     }
-    setCookie("jwt", data.body.token, { sameSite: "none", secure: true });
-    setCookie("subitem", data.body.subitem, { sameSite: "none", secure: true });
+    if (data.statusCode !== 200) {
+      setSigningUpState(false);
+      setModelState({
+        modelMessage: "Creation of account failed",
+        showModel: true,
+      });
+      return;
+    }
+    const expiresTime = new Date(Date.now() + 2 * 60 * 60 * 1000);
+    setCookie("jwt", data.body.token, {
+      sameSite: "none",
+      secure: true,
+      expires: expiresTime,
+    });
+    setCookie(
+      "subscription",
+      { ...data.body.subscription },
+      { sameSite: "none", secure: true }
+    );
     setCookie("user", data.body.user, { sameSite: "none", secure: true });
+    setCookie("usage", data.body.usage, { sameSite: "none", secure: true });
     setSigningUpState(false);
     setLoginState({
       ...loginState,
@@ -66,12 +89,11 @@ const Signup = () => {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <Dialog open={modelState.showModel}>
-        <Dialog.Header>Sign up failed</Dialog.Header>
+        <Dialog.Header>
+          <Typography variant="h5">Sign up failed</Typography>
+        </Dialog.Header>
         <Dialog.Body>
-          {modelState.email} {(!email && !pwd) || (!email && !name) ? "& " : ""}
-          {modelState.password}{" "}
-          {(!email && !pwd && !name) || (!pwd && !name) ? "& " : ""}
-          {modelState.name}
+          <Typography variant="lead">{modelState.modelMessage}</Typography>
         </Dialog.Body>
         <Dialog.Footer>
           <Button
@@ -154,7 +176,6 @@ const Signup = () => {
               </Typography>
             }
             containerProps={{ className: "-ml-2.5" }}
-            value={consent}
             onChange={(e) => setConsent(e.target.checked)}
           />
 

@@ -1,21 +1,26 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ReactDOM from "react-dom/client";
 import { LoginContextProvider } from "./context/LoginContext";
+import {
+  RouterProvider,
+  createBrowserRouter as Router,
+} from "react-router-dom";
 
 import { ThemeProvider } from "@material-tailwind/react";
 
+const router = Router([{ path: "*", Component: App }]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <ThemeProvider>
       <LoginContextProvider>
-        <App />
+        <RouterProvider router={router} />
       </LoginContextProvider>
     </ThemeProvider>
-  </React.StrictMode>
+  </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

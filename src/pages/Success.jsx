@@ -24,11 +24,17 @@ const Success = () => {
           token: cookies.jwt,
         }
       );
+      const expiresTime = new Date(Date.now() + 2 * 60 * 60 * 1000);
       setCookie("jwt", data.body.token, {
         sameSite: "none",
         secure: true,
+        expires: expiresTime,
       });
-      setCookie("subitem", data.body.subitem, {
+      setCookie("subscription", data.body.subscription, {
+        sameSite: "none",
+        secure: true,
+      });
+      setCookie("usage", data.body.usage, {
         sameSite: "none",
         secure: true,
       });

@@ -15,11 +15,14 @@ import { useCookies } from "react-cookie";
 const Login = () => {
   const [isSigningIn, setSigningInState] = useState(false);
   const [loginState, setLoginState] = useContext(LoginContext);
-  const [modelState, setModelState] = useState({ showModel: false });
+  const [modelState, setModelState] = useState({
+    showModel: false,
+    modelMessage: "",
+  });
   const [pwd, setPwd] = useState("");
   const [email, setEmail] = useState("");
   // eslint-disable-next-line
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [, setCookie] = useCookies(["user"]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,8 +33,7 @@ const Login = () => {
     setSigningInState(true);
     if (!email || !pwd) {
       setModelState({
-        email: !email ? "Email is required" : "",
-        password: !pwd ? "Password is required" : "",
+        modelMessage: "Please enter all the fields",
         showModel: true,
       });
       setSigningInState(false);
@@ -44,13 +46,35 @@ const Login = () => {
         customerPassword: pwd,
       }
     );
-    if (data.statusCode !== 200) {
+    if (data.statusCode === 401) {
       setSigningInState(false);
+      setModelState({
+        modelMessage: "Incorrect email or password",
+        showModel: true,
+      });
       return;
     }
-    setCookie("jwt", data.body.token, { sameSite: "none", secure: true });
-    setCookie("subitem", data.body.subitem, { sameSite: "none", secure: true });
+    if (data.statusCode !== 200) {
+      setSigningInState(false);
+      setModelState({
+        modelMessage: "Not able to login at the moment",
+        showModel: true,
+      });
+      return;
+    }
+    const expiresTime = new Date(Date.now() + 2 * 60 * 60 * 1000);
+    setCookie("jwt", data.body.token, {
+      sameSite: "none",
+      secure: true,
+      expires: expiresTime,
+    });
+    setCookie("subscription", data.body.subscription, {
+      sameSite: "none",
+      secure: true,
+    });
     setCookie("user", data.body.user, { sameSite: "none", secure: true });
+    setCookie("usage", data.body.usage, { sameSite: "none", secure: true });
+
     setSigningInState(false);
     setLoginState({
       ...loginState,
@@ -61,10 +85,11 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <Dialog open={modelState.showModel}>
-        <Dialog.Header>Sign in failed</Dialog.Header>
+        <Dialog.Header>
+          <Typography variant="h5">Sign in failed</Typography>
+        </Dialog.Header>
         <Dialog.Body>
-          {modelState.email} {!email && !pwd ? "& " : ""}
-          {modelState.password}
+          <Typography variant="lead">{modelState.modelMessage}</Typography>
         </Dialog.Body>
         <Dialog.Footer>
           <Button
@@ -76,8 +101,8 @@ const Login = () => {
           </Button>
         </Dialog.Footer>
       </Dialog>
-      <Card color="transparent" shadow={false} className="mx-6">
-        <Typography variant="h4" color="blue-gray">
+      <Card color="transparent" shadow={false} className="mx-10">
+        <Typography variant="h5" color="blue-gray">
           Login
         </Typography>
         <Typography color="gray" className="mt-1 font-normal">
@@ -99,7 +124,7 @@ const Login = () => {
               autoComplete="on"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
+            <Typography variant="h5" color="blue-gray" className="-mb-3">
               Password
             </Typography>
             <Input
