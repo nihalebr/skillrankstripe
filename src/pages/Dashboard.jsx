@@ -17,16 +17,19 @@ const Dashboard = () => {
   const [cookies, setCookie] = useCookies(["user"]);
   const [isLoading, setIsLoading] = useState(true);
   const [loginState, setLoginState] = useContext(LoginContext);
-  const [isManagePay, setIsManagePay] = useState(false);
   const [modelState, setModelState] = useState({
     showModel: false,
     modelMessage: "",
     modelTitle: "",
   });
-
+  const [isButtonDisable, setButtonDisable] = useState(false);
+  const [isAddUsage, setIsAddUsage] = useState(false);
+  const [isManageProfile, setIsManageProfile] = useState(false);
   const navigate = useNavigate();
 
   const addUsage = async () => {
+    setButtonDisable(true);
+    setIsAddUsage(true);
     const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/usageadd`;
     const { data } = await axios.post(url, {
       token: cookies.jwt,
@@ -43,17 +46,64 @@ const Dashboard = () => {
     }
     if (data.statusCode !== 200) return;
     setCookie("usage", data.body.usage, { sameSite: "none", secure: true });
+    setButtonDisable(false);
   };
   const subAddon = async () => {
+    const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/addon`;
+    const { data } = await axios.post(url, {
+      token: cookies.jwt,
+    });
+    console.log(data);
+    if (data.statusCode === 503) {
+      setModelState({
+        showModel: true,
+        modelTitle: "Service Unavailable",
+        modelMessage:
+          "we regret for the inconvenience. At the moment we are unable to process your request. Please try again later.",
+      });
+      setButtonDisable(false);
+      return;
+    }
+    if (data.statusCode !== 200) return;
+    setCookie(
+      "subscription",
+      { ...cookies.subscription, subitem: data.body.subitem },
+      {
+        sameSite: "none",
+        secure: true,
+      }
+    );
+    const { refreshToken } = await axios.post(
+      "https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/refreshToken",
+      {
+        token: cookies.jwt,
+      }
+    );
+    const expiresTime = new Date(Date.now() + 2 * 60 * 60 * 1000);
+    setCookie("jwt", refreshToken.body.token, {
+      sameSite: "none",
+      secure: true,
+      expires: expiresTime,
+    });
+    setCookie("subscription", refreshToken.body.subscription, {
+      sameSite: "none",
+      secure: true,
+    });
+    setCookie("usage", refreshToken.body.usage, {
+      sameSite: "none",
+      secure: true,
+    });
     setModelState({
       showModel: true,
       modelTitle: "Hiring just got amplified",
       modelMessage: "Whooohoo, your addon has been added successfully!",
     });
+    setButtonDisable(false);
     return;
   };
   const managePay = async () => {
-    setIsManagePay(true);
+    setButtonDisable(true);
+    setIsManageProfile(true);
     const url = `https://i56sinnudj.execute-api.us-east-1.amazonaws.com/dev/managepay`;
     const { data } = await axios.post(url, {
       token: cookies.jwt,
@@ -87,7 +137,10 @@ const Dashboard = () => {
           <Button
             variant="text"
             color="red"
-            onClick={() => setModelState({ ...modelState, showModel: false })}
+            onClick={() => {
+              setModelState({ ...modelState, showModel: false });
+              setButtonDisable(false);
+            }}
           >
             Close
           </Button>
@@ -153,8 +206,16 @@ const Dashboard = () => {
                       <Button
                         onClick={addUsage}
                         data-umami-event={" Create Assessment"}
+                        disabled={isButtonDisable}
                       >
                         Create Assessment
+                        {isAddUsage && (
+                          <Spinner
+                            size="sm"
+                            color="white"
+                            className="inline-block ml-2"
+                          />
+                        )}
                       </Button>
                     </CardFooter>
                   </Card>
@@ -183,11 +244,18 @@ const Dashboard = () => {
                     </CardBody>
                     <CardFooter className="pt-0">
                       <Button
-                        disabled={isManagePay}
+                        disabled={isButtonDisable}
                         onClick={managePay}
                         data-umami-event={" Manage Payment"}
                       >
                         Manage Profile
+                        {isManageProfile && (
+                          <Spinner
+                            size="sm"
+                            color="white"
+                            className="inline-block ml-2"
+                          />
+                        )}
                       </Button>
                     </CardFooter>
                   </Card>

@@ -76,7 +76,7 @@ const Login = () => {
     setCookie("usage", data.body.usage, { sameSite: "none", secure: true });
 
     setSigningInState(false);
-    setLoginState({
+    await setLoginState({
       ...loginState,
       isLoggedIn: true,
     });

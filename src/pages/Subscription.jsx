@@ -48,7 +48,7 @@ const Subscription = () => {
         quantity: 1,
       },
     ];
-    if (isChecked) {
+    if (isChecked && isMonthly) {
       priceIds.push({
         price: "price_1ONYoZSEFUwbQhR8QnEAHHQ1",
       });
@@ -77,7 +77,7 @@ const Subscription = () => {
       },
     ];
     const isChecked = isMonthly ? isAddonActiveProMonth : isAddonActiveProYear;
-    if (isChecked) {
+    if (isChecked && isMonthly) {
       priceIds.push({
         price: "price_1ONYnkSEFUwbQhR8Ng0vKz1A",
       });
@@ -300,6 +300,7 @@ const Subscription = () => {
                           onChange={(e) =>
                             setIsAddonActiveStarterMonth(e.target.checked)
                           }
+                          disabled={!isButtonEnable}
                         />
                         <div>
                           <Typography
@@ -442,6 +443,7 @@ const Subscription = () => {
                           onChange={(e) =>
                             setIsAddonActiveProMonth(e.target.checked)
                           }
+                          disabled={!isButtonEnable}
                         />
                         <div>
                           <Typography
@@ -578,7 +580,7 @@ const Subscription = () => {
                         </span>
                       </div>
                       <hr className="mx-4 border-blue-300 border-b-2 rounded-2xl" />
-                      <div className="px-6 py-4 flex">
+                      <div className="px-6 py-4 flex bg-gray-400">
                         <Checkbox
                           color="blue"
                           containerProps={{
@@ -587,6 +589,7 @@ const Subscription = () => {
                           onChange={(e) =>
                             setIsAddonActiveStarterYear(e.target.checked)
                           }
+                          disabled={true}
                         />
                         <div>
                           <Typography
@@ -614,9 +617,7 @@ const Subscription = () => {
                           <h1 className="text-6xl font-bold">
                             S<span className="text-blue-600">R </span>
                           </h1>
-                          <p className="font-bold  mt-4 text-2xl ">
-                            Skillrank Pro
-                          </p>
+                          <p className="font-bold  mt-4 text-2xl "></p>
                           <p className="font-bold  mt-4 text-gray-400 ">
                             Strategically shape your tech team.
                           </p>
@@ -720,7 +721,7 @@ const Subscription = () => {
                         </span>
                       </div>
                       <hr className="mx-4 border-blue-300 border-b-2 rounded-2xl" />
-                      <div className="px-6 py-4 flex">
+                      <div className="px-6 py-4 flex bg-gray-400">
                         <Checkbox
                           color="blue"
                           containerProps={{
@@ -729,12 +730,15 @@ const Subscription = () => {
                           onChange={(e) =>
                             setIsAddonActiveProYear(e.target.checked)
                           }
+                          disabled={true}
                         />
                         <div>
                           <Typography
                             color="blue-gray"
                             className="font-small font-bold"
                             variant="small"
+                            defaultChecked
+                            disabled={true}
                           >
                             Additional assignment at $2.00 /per assignment
                           </Typography>
@@ -742,6 +746,7 @@ const Subscription = () => {
                             variant="small"
                             color="gray"
                             className="font-small"
+                            disabled={true}
                           >
                             (Billed based on usage per month)
                           </Typography>

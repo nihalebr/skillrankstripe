@@ -9,22 +9,23 @@ const Nav = () => {
   const [, , removeCookie] = useCookies(["user"]);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!loginState.isLoggedIn) {
       navigate("/login");
       return;
     }
     removeCookie("jwt", { sameSite: "none", secure: true });
     removeCookie("subscription", { sameSite: "none", secure: true });
+    removeCookie("subitem", { sameSite: "none", secure: true });
     removeCookie("user", { sameSite: "none", secure: true });
     removeCookie("usage", { sameSite: "none", secure: true });
-    setLoginState({
+    await setLoginState({
       ...loginState,
       isLoggedIn: false,
     });
     setTimeout(() => {
       navigate("/login");
-    }, 100);
+    }, 1000);
   };
   return (
     <div>
