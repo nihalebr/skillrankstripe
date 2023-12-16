@@ -617,7 +617,9 @@ const Subscription = () => {
                           <h1 className="text-6xl font-bold">
                             S<span className="text-blue-600">R </span>
                           </h1>
-                          <p className="font-bold  mt-4 text-2xl "></p>
+                          <p className="font-bold  mt-4 text-2xl ">
+                            Strategist Plan
+                          </p>
                           <p className="font-bold  mt-4 text-gray-400 ">
                             Strategically shape your tech team.
                           </p>
