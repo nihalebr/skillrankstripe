@@ -42,6 +42,7 @@ const Dashboard = () => {
         modelMessage:
           "You have reached your limit,But you can add more by opting into a addon. it will charge you $2/per additional assignment.",
       });
+      setButtonDisable(false);
       return;
     }
     if (data.statusCode !== 200) return;
