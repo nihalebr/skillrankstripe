@@ -141,6 +141,7 @@ const Dashboard = () => {
             onClick={() => {
               setModelState({ ...modelState, showModel: false });
               setButtonDisable(false);
+              setIsAddUsage(false);
             }}
           >
             Close
